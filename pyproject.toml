@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "juno"
+version = "1.0"
+description = ""
+authors = ["Matt Matheus <matt.matheus@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^5.0.1"
+requests = "^2.31.0"
+python-dotenv = "^1.0.0"
+django-admin = "^2.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
