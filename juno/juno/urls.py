@@ -23,4 +23,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("hue/", include("hue.urls")),
     path("dailycount/", include("dailycount.urls")),
+    path("ai/", include("ai.urls")),
 ]

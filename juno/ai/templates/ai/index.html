@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Hue
+{% endblock %}
+{% block content %}
+<form id="aiForm" action="{% url 'index' %}" method="POST">
+    {% csrf_token %}
+    <label for="inputText">Enter your text:</label>
+    <input type="text" id="inputText" name="inputText">
+    <button type="submit">Submit</button>
+</form>
+
+<div id="outputText"></div>
+
+<script>
+    document.getElementById("aiForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var inputText = document.getElementById("inputText").value;
+        var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+
+        // Make API call to your server
+        fetch('/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ inputText: inputText })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Update the outputText element with the returned text
+            document.getElementById("outputText").innerText = data.returnedText;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+{% endblock %}
