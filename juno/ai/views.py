@@ -9,6 +9,10 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 
 
 def index(request):
+    return render(request, "ai/index.html")
+
+
+async def chat(request):
     if request.method == "POST":
         text = request.POST.get("inputText")
         print(text)
@@ -22,6 +26,4 @@ def index(request):
             ],
         )
         # Process the response from OpenAI as needed
-        return render(request, "ai/index.html", {"response": response})
-    else:
-        return render(request, "ai/index.html")
+        return response
